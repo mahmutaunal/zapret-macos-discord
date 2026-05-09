@@ -1,0 +1,4 @@
+TPWS_OPT="
+--filter-tcp=80 --hostspell=hoSt <HOSTLIST> --new
+--filter-tcp=443 --split-pos=2 --oob <HOSTLIST>
+"
