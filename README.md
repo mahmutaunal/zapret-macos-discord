@@ -4,6 +4,10 @@ One-command Zapret setup for Discord on macOS Apple Silicon.
 
 This project provides a simple macOS installer for using Discord with Zapret on Apple Silicon Macs.
 
+> [!WARNING]
+> This project modifies macOS PF/network behavior.
+> Use at your own risk.
+
 ## Tested Setup
 
 - macOS
@@ -49,6 +53,12 @@ TPWS_OPT="
 
 "
 
+## Known Issues
+
+- Discord Desktop updater may loop on some ISPs
+- macOS updates may disable PF
+- Upstream Zapret installer changes may break automated installation
+
 ## Discord Update Loop
 
 Some users may experience an endless Discord update loop.
@@ -71,6 +81,16 @@ Workaround:
 See:
 
 docs/discord-update-loop.md
+
+## Why this exists
+
+Many macOS Apple Silicon users struggle to use Discord reliably with Zapret.
+
+This repository provides a tested setup focused on:
+- Apple Silicon Macs
+- Discord Desktop
+- Discord Web
+- Turkish ISPs
 
 ## Troubleshooting
 
