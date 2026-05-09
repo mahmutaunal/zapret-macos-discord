@@ -27,12 +27,22 @@ if ! command -v git >/dev/null 2>&1; then
   exit 1
 fi
 
+if [[ -d "$ZAPRET_DIR" ]]; then
+  echo ""
+  echo "Existing Zapret installation detected at:"
+  echo "$ZAPRET_DIR"
+  echo ""
+  echo "Please uninstall existing Zapret first:"
+  echo "./uninstall.sh"
+  exit 1
+fi
+
 echo ""
 echo "Cloning official Zapret repository..."
 
 rm -rf "$TMP_DIR"
 
-git clone https://github.com/bol-van/zapret.git "$TMP_DIR"
+git clone --depth 1 https://github.com/bol-van/zapret.git "$TMP_DIR"
 
 cd "$TMP_DIR"
 
@@ -41,7 +51,7 @@ echo "Starting official installer..."
 
 chmod +x install_easy.sh
 
-sudo ./install_easy.sh <<INSTALLER_INPUT
+sudo ./install_easy.sh <<EOF
 Y
 N
 3
@@ -51,7 +61,7 @@ N
 1
 
 N
-INSTALLER_INPUT
+EOF
 
 echo ""
 echo "Applying custom Discord config..."
@@ -80,7 +90,7 @@ echo "========================================"
 
 echo ""
 echo "If Discord gets stuck in update loop:"
-echo "1. Wait until final update step"
+echo "1. Let Discord reach the final update step"
 echo "2. Stop Zapret temporarily"
 echo "3. Let Discord finish update"
 echo "4. Restart Zapret"
