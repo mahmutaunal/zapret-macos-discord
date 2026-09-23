@@ -24,6 +24,42 @@ This project provides a simple macOS installer for using Discord with Zapret on 
 - Installs a Discord host list
 - Restarts Zapret automatically
 - Enables macOS PF automatically
+- Optional native menu bar controller (macOS 13+)
+
+## Menu Bar App
+
+`Zapret Menu` is a small, Dock-free macOS app that controls the existing
+installation without changing Zapret's files or installing another background
+service.
+
+- Start, stop, and restart Zapret from the menu bar
+- See whether the `tpws` process is running
+- Optionally open only the menu bar app at login
+- Stop Zapret and quit, or quit the menu bar app without stopping Zapret
+- Uses the standard macOS administrator prompt for service actions
+
+The login option never starts Zapret automatically. The user starts the service
+manually after login.
+
+### Build the app
+
+Requires Xcode and macOS 13 or later:
+
+```sh
+./scripts/build-app.sh
+```
+
+The app is created at `build/Zapret Menu.app`.
+
+### Build the DMG
+
+```sh
+./scripts/create-dmg.sh
+```
+
+The DMG is created at `build/Zapret-Menu-1.4.0.dmg`. Local builds are ad-hoc
+signed. Public releases should use a Developer ID certificate and Apple
+notarization.
 
 ## Install
 

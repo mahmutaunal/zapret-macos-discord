@@ -1,1 +1,43 @@
+# macOS metadata
 .DS_Store
+.AppleDouble
+.LSOverride
+
+# Swift Package Manager and generated build products
+.build/
+build/
+.swiftpm/xcode/package.xcworkspace/xcuserdata/
+.swiftpm/xcode/xcuserdata/
+
+# Xcode user data and archives
+DerivedData/
+xcuserdata/
+*.xcuserstate
+*.xcarchive
+
+# Distribution artifacts
+*.dmg
+*.pkg
+*.zip
+
+# Apple signing and provisioning material
+*.cer
+*.p12
+*.p8
+*.provisionprofile
+*.mobileprovision
+
+# Local credentials and environment configuration
+.env
+.env.*
+!.env.example
+
+# Logs and temporary files
+*.log
+*.tmp
+*.swp
+*~
+
+# IDE settings
+.idea/
+.vscode/
