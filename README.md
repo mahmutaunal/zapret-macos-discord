@@ -92,6 +92,7 @@ TPWS_OPT="
 ## Known Issues
 
 - Discord Desktop updater may loop on some ISPs
+- Discord may work over Wi-Fi but fail over Ethernet if macOS uses different DNS servers for each network service
 - macOS updates may disable PF
 - Upstream Zapret installer changes may break automated installation
 
@@ -117,6 +118,42 @@ Workaround:
 See:
 
 docs/discord-update-loop.md
+
+Discord Works on Wi-Fi but Not Ethernet
+
+macOS can use different DNS settings for Wi-Fi and Ethernet. If Discord works correctly with Zapret over Wi-Fi but remains stuck loading over Ethernet, check the DNS configuration of your Ethernet network service.
+
+First, list the available network services:
+
+networksetup -listallnetworkservices
+
+Find your Ethernet service name. For example:
+
+USB 10/100/1000 LAN
+
+Check its current DNS configuration:
+
+networksetup -getdnsservers "USB 10/100/1000 LAN"
+
+If necessary, configure the Ethernet service to use Cloudflare and Google DNS:
+
+sudo networksetup -setdnsservers "USB 10/100/1000 LAN" 1.1.1.1 1.0.0.1 8.8.8.8 8.8.4.4
+
+Then flush the macOS DNS cache:
+
+sudo dscacheutil -flushcache
+sudo killall -HUP mDNSResponder
+
+Verify the new DNS configuration:
+
+networksetup -getdnsservers "USB 10/100/1000 LAN"
+
+[!NOTE]
+Replace USB 10/100/1000 LAN with the actual name of your Ethernet network service.
+
+To restore automatic DNS configuration:
+
+sudo networksetup -setdnsservers "USB 10/100/1000 LAN" Empty
 
 ## Why this exists
 
